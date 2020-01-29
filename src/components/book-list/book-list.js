@@ -3,18 +3,33 @@ import BookListItem from '../book-list-item';
 import { connect } from 'react-redux';
 import withBookstoreService from '../hoc/with-bookstore-service';
 import { bindActionCreators } from 'redux';
-import {booksLoaded} from '../../actions/index';
+import {booksLoaded, booksRequested} from '../../actions/index';
 import './book-list.css'
+import Spinner from '../spinner';
 
 export class BookList extends Component {
   componentDidMount() {
-    const { bookstoreService } = this.props
-    const data = bookstoreService.getBooks()
-    this.props.booksLoaded(data)
+    // recieve data
+    const { bookstoreService, booksLoaded, booksRequested } = this.props
+    booksRequested(); // will show spinner every time when visit home page
+    bookstoreService.getBooks()
+      .then((data) => { // dispatch action to store
+        booksLoaded(data)
+      })
+    
+    
   }
 
   render() {
-    const { books } = this.props;
+    const { books, isLoading } = this.props;
+    if (isLoading) {
+      return (
+        <div className="book-list-wrapper">
+          <Spinner />
+        </div>
+        
+      )
+    }
 
     return (
       <div className="book-list-wrapper">
@@ -28,13 +43,14 @@ export class BookList extends Component {
 
 const mapStateToProps = (state) => { // set props of component
   return {
-    books: state.books
+    books: state.books,
+    isLoading: state.isLoading
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ //todo read more about bindActionCreators
-      booksLoaded
+      booksLoaded, booksRequested
     }, dispatch)
   }
 
