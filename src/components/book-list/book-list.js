@@ -10,12 +10,6 @@ import ErrorIndicator from '../error-indicator';
 export class BookList extends Component {
   componentDidMount() {
     this.props.fetchBooks();
-    // recieve data
-    // const { bookstoreService,
-    //   booksLoaded,
-    //   booksRequested,
-    //   booksError } = this.props
-    
   }
 
   render() {
