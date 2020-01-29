@@ -1,0 +1,19 @@
+.book-item{
+  width: 85vw;
+  display: flex;
+  flex-direction: row;
+}
+.book-title{
+  font-size: 32px;
+}
+.book-item-img{
+  margin-right: 5%;
+  height: 300px;
+  width: 200px;
+}
+.book-item-price{
+  font-size: 24px;
+}
+.book-title{
+  color: #185244;
+}

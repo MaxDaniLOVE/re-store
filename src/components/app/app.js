@@ -4,13 +4,18 @@ import {
   HomePage
 } from '../pages';
 import { Switch, Route} from 'react-router-dom';
+import ShopHeader from '../shop-header';
 
 const App = () => {
   return (
-    <Switch>
-      <Route path="/" component={HomePage} exact/>
-      <Route path="/cart" component={CartPage} />
-    </Switch>
+    <main>
+      <ShopHeader total={59.99} numItems={3}/>
+      <Switch>
+        <Route path="/" component={HomePage} exact/>
+        <Route path="/cart" component={CartPage} />
+      </Switch>
+    </main>
+   
   );
 }
 

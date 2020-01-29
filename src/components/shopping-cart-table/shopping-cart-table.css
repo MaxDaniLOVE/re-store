@@ -1,0 +1,22 @@
+.table-light{
+  color: #185244;
+}
+.shopping-cart-table{
+  width: 85vw;
+  border: 1px solid #56CC9D;
+}
+.shopping-cart-table-header{
+  background-color: #56CC9D;
+  color: #fff;
+}
+.cart-btn{
+  margin: 0 5px;
+}
+.shopping-cart-total{
+  text-align: right;
+  margin-bottom: 5%;
+  font-weight: 800;
+}
+.td-btns{
+  width: 175px;
+}

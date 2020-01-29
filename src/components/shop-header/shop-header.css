@@ -1,0 +1,22 @@
+.navbar{
+  position: fixed;
+  width: 100%;
+  justify-content: space-between;
+}
+.fa-shopping-cart{
+  font-size: 2rem;
+  color: #185244;
+}
+.cart-link{
+  width: 200px;
+  color: aliceblue;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+}
+.cart-link:hover {
+  color: #185244;
+}
+.cart-total{
+  font-weight: 800;
+}

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import withBookstoreService from '../hoc/with-bookstore-service';
 import { bindActionCreators } from 'redux';
 import {booksLoaded} from '../../actions/index';
+import './book-list.css'
 
 export class BookList extends Component {
   componentDidMount() {
@@ -16,15 +17,9 @@ export class BookList extends Component {
     const { books } = this.props;
 
     return (
-      <div>
+      <div className="book-list-wrapper">
         {
-          books.map((book) => {
-            return (
-            <li key={book.id}>
-              <BookListItem book={book}/>
-            </li>
-            )
-          })
+          books.map((book) => <BookListItem key={book.id} book={book}/>)
         }
       </div>
     );
@@ -47,9 +42,9 @@ export default withBookstoreService()
                 (connect(mapStateToProps, mapDispatchToProps)
                   (BookList)); // send components with ready props
 
-{/* <div key={id} className="card border-success mb-3" style={{maxWidth: '20rem'}}>
+/* <div key={id} className="card border-success mb-3" style={{maxWidth: '20rem'}}>
   <div className="card-header">{title}</div>
   <div className="card-body">
     <h4 className="card-title">{author}</h4>
   </div>
-</div> */}
+</div> */
