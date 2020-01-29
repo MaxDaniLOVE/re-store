@@ -19,6 +19,7 @@ export default class BookstoreService {
     return new Promise((res, rej) => {
       setTimeout(() => {
         res(this.data)
+        //rej(new Error()) testing errors
       }, 421);
     });
   }
