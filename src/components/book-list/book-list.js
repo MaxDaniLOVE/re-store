@@ -71,7 +71,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       },
       onAddedToCart: (id) => {
         dispatch(bookAddedToCart(id))
-        console.log('add ' + id);
       }
     }
   }
