@@ -15,4 +15,11 @@ const booksError = (error) => {
     payload: error,
   }
 }
-export {booksLoaded, booksRequested, booksError}
+
+const bookAddedToCart = (id) => {
+  return {
+    type: 'BOOK_ADDED_TO_CART',
+    payload: id,
+  }
+}
+export {booksLoaded, booksRequested, booksError, bookAddedToCart}

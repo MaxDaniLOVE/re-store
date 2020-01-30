@@ -2,16 +2,19 @@ import React, { Component } from 'react';
 import BookListItem from '../book-list-item';
 import { connect } from 'react-redux';
 import withBookstoreService from '../hoc/with-bookstore-service';
-import {booksLoaded, booksRequested, booksError} from '../../actions/index';
+import {booksLoaded, booksRequested, booksError, bookAddedToCart} from '../../actions/index';
 import './book-list.css'
 import Spinner from '../spinner';
 import ErrorIndicator from '../error-indicator';
 
-const BookList = ({books}) => { // only render
+const BookList = ({books, onAddedToCart}) => { // only render
   return (
     <div className="book-list-wrapper">
       {
-        books.map((book) => <BookListItem key={book.id} book={book}/>)
+        books.map((book) => <BookListItem
+                              key={book.id}
+                              book={book}
+                              onAddedToCart={() => onAddedToCart(book.id)} />)
       }
     </div>
   );
@@ -23,7 +26,7 @@ export class BookListContainer extends Component { // only logic
   }
 
   render() {
-    const { books, isLoading, error } = this.props;
+    const { books, isLoading, error, onAddedToCart } = this.props;
     if (isLoading) {
       return (
         <div className="book-list-wrapper">
@@ -39,7 +42,7 @@ export class BookListContainer extends Component { // only logic
       )
     }
 
-    return <BookList books={books}/>;
+    return <BookList books={books} onAddedToCart={onAddedToCart}/>;
   }
 }
 
@@ -56,7 +59,7 @@ const mapStateToProps = (state) => { // set props of component
 const mapDispatchToProps = (dispatch, ownProps) => {
   const { bookstoreService } = ownProps // ownProps gets props from rendering element
   return { //todo read more about bindActionCreators
-     fetchBooks: () => {
+      fetchBooks: () => {
         dispatch(booksRequested()); // will show spinner every time when visit home page
         bookstoreService.getBooks()
         .then((data) => { 
@@ -65,8 +68,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         .catch((err) => {
           dispatch(booksError(err));
         })
-        }
+      },
+      onAddedToCart: (id) => {
+        dispatch(bookAddedToCart(id))
+        console.log('add ' + id);
       }
+    }
   }
 
 export default withBookstoreService()
