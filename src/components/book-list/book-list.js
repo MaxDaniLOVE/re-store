@@ -7,7 +7,17 @@ import './book-list.css'
 import Spinner from '../spinner';
 import ErrorIndicator from '../error-indicator';
 
-export class BookList extends Component {
+const BookList = ({books}) => { // only render
+  return (
+    <div className="book-list-wrapper">
+      {
+        books.map((book) => <BookListItem key={book.id} book={book}/>)
+      }
+    </div>
+  );
+}
+
+export class BookListContainer extends Component { // only logic
   componentDidMount() {
     this.props.fetchBooks();
   }
@@ -29,15 +39,11 @@ export class BookList extends Component {
       )
     }
 
-    return (
-      <div className="book-list-wrapper">
-        {
-          books.map((book) => <BookListItem key={book.id} book={book}/>)
-        }
-      </div>
-    );
+    return <BookList books={books}/>;
   }
 }
+
+
 
 const mapStateToProps = (state) => { // set props of component
   return {
@@ -65,4 +71,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
 export default withBookstoreService()
                 (connect(mapStateToProps, mapDispatchToProps)
-                  (BookList)); // send components with ready props
+                  (BookListContainer)); // send components with ready props

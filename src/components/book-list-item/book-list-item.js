@@ -11,7 +11,7 @@ const BookListItem = ({book}) => {
         <p className="lead">{author}</p>
         <hr className="my-4" />
         <p>There will be description</p>
-        <p className="book-item-price">{`${price}$`}</p>
+        <p className="book-item-price">{`$${price}`}</p>
         <p className="lead">
           <button className="btn btn-success">Add to cart</button>
         </p>
