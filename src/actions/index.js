@@ -22,4 +22,25 @@ const bookAddedToCart = (id) => {
     payload: id,
   }
 }
-export {booksLoaded, booksRequested, booksError, bookAddedToCart}
+
+const bookRemovedFromCart = (id) => {
+  return {
+    type: 'BOOK_REMOVED_FROM_CART',
+    payload: id,
+  }
+}
+
+const allBookRemovedFromCart = (id) => {
+  return {
+    type: 'ALL_BOOKS_REMOVED_FROM_CART',
+    payload: id,
+  }
+}
+export {
+  booksLoaded,
+  booksRequested,
+  booksError,
+  bookAddedToCart,
+  allBookRemovedFromCart,
+  bookRemovedFromCart
+}

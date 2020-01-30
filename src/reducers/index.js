@@ -5,8 +5,14 @@ const initialState = {
   cartItems: [ ],
   orderTotal: 1120
 }
-
+// ! use for adding not existing items
 const updateCartItems = (cartItems, item, idx) => {
+  if (item.count === 0) {
+    return [
+      ...cartItems.slice(0, idx),
+      ...cartItems.slice(idx + 1)
+    ]
+  }
   if (idx === -1) {
     return [
       ...cartItems,
@@ -20,14 +26,14 @@ const updateCartItems = (cartItems, item, idx) => {
     ]
   }
 }
-
-const updateCartItem = (book, item) => {
+// ! use for adding count and price to state
+const updateCartItem = (book, item, quantity) => {
   let newItem;
   if (item) {
     newItem = {
       ...item,
-      count: item.count + 1,
-      total: item.total + book.price
+      count: item.count + quantity,
+      total: item.total + quantity * book.price
     }
   } else {
     newItem = {
@@ -38,6 +44,18 @@ const updateCartItem = (book, item) => {
     }
   }
   return newItem;
+}
+
+const updateOrder = (state, bookId, quantity) => {
+  const {books, cartItems} = state;
+  const book = books.find((book) => book.id === bookId);
+  const itemIndex = cartItems.findIndex((addedBook) => addedBook.id === bookId)
+  const item = cartItems[itemIndex]
+  let newItem = updateCartItem(book, item, quantity)
+  return {
+    ...state,
+    cartItems: updateCartItems(cartItems, newItem, itemIndex),
+  }
 }
 
 const reducer = (state = initialState, action) => {
@@ -64,15 +82,16 @@ const reducer = (state = initialState, action) => {
         error: action.payload
       }
     case 'BOOK_ADDED_TO_CART':
-      const bookId = action.payload;
-      const book = state.books.find((book) => book.id === bookId);
-      const itemIndex = state.cartItems.findIndex((addedBook) => addedBook.id === bookId)
-      const item = state.cartItems[itemIndex]
-      let newItem = updateCartItem(book, item)
+      return updateOrder(state, action.payload, 1)
+    case 'BOOK_REMOVED_FROM_CART':
+      return updateOrder(state, action.payload, -1)
+    case 'ALL_BOOKS_REMOVED_FROM_CART':
+      const deletedBookId = action.payload;
+      const updatedBooks = state.cartItems.filter((item) => item.id !== deletedBookId)
       return {
         ...state,
-        cartItems: updateCartItems(state.cartItems, newItem, itemIndex),
-      }  
+        cartItems: updatedBooks,
+      }
     default:
       return state;
   }
