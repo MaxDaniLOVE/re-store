@@ -3,9 +3,12 @@ import './book-list-item.css'
 
 const BookListItem = ({book, onAddedToCart}) => {
   const {title, author, image, price} = book;
+  const style = {
+    backgroundImage: `url(${image})`
+  }
   return (
     <div className="jumbotron book-item">
-      <img className="book-item-img" src={image} alt="img"/>
+      <div className="book-item-img" style={style} height="100%" alt="img"/>
       <div className="book-item-info-wrapper">
         <h1 className="display-3 book-title">{title}</h1>
         <p className="lead">{author}</p>
@@ -17,6 +20,10 @@ const BookListItem = ({book, onAddedToCart}) => {
           className="btn btn-success"
           onClick={onAddedToCart}
           >Add to cart</button>
+          <button
+          className="btn btn-info"
+          onClick={() => alert('not implemented yet')}
+          >Show more info</button>
         </p>
       </div>
     </div>
