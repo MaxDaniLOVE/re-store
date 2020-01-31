@@ -69,18 +69,23 @@ export class BookInfo extends Component {
     }
     return (
       <div className="home-page-wrapper">
-        <div className="book-info">
-          <span>Title: {title}</span>
-          <span>Subtitle: {subtitle}</span>
-          <span>Authors: {authors}</span>
-          <span>Publisher: {publisher}</span>
-          <span>Language: {language}</span>
-          <span>Pages: {pages}</span>
-          <span>Year: {year}</span>
-          <span>Rating: {rating}</span>
-          <span>Description: {desc}</span>
-          <span>Price: {price}</span>
-          <img className="book-image" src={image} alt="img"/>
+        <div className="book-info jumbotron book-info-block">
+          <div className="book-image-info" style={{backgroundImage: `url(${image})`}} alt="img"/>
+          <div className="book-info-block_titles">
+            <h1 className="book-info-title">{title}</h1>
+            <h2 className="book-info-subtitle">{subtitle}</h2>
+            <hr size="30" />
+            <h5>Authors: {authors}</h5>
+            <h5>Publisher: {publisher}</h5>
+            <h5>Language: {language}</h5>
+            <h5>Pages: {pages}</h5>
+            <h5>Year: {year}</h5>
+            <div className="rating">
+              <h5>Rating: {rating}*</h5>
+            </div>
+            <h5>Description: {desc}</h5>
+            <h5>Price: {price}</h5>
+          </div>
         </div>
       </div>
     );

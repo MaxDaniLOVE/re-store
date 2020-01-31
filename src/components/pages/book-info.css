@@ -4,7 +4,29 @@
   flex-direction: column;
   width: 85vw;
 }
-.book-image{
-  width: 300px;
-  height: 350px;
+
+.loadingio-spinner-ripple-tiol49iw8o{
+ align-self: center;
+}
+.book-info-title{
+  color: #185244;
+  font-size: 2.5rem;
+}
+.book-info-subtitle{
+  font-size: 2rem;
+}
+.book-info-block{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.book-image-info{
+  width: 400px;
+  height: 450px;
+  margin-right: 5%;
+  background-position: bottom;
+  background-size: 450px;
+}
+.book-info-block_titles{
+  max-width: 60vw;
 }
