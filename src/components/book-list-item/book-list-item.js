@@ -1,7 +1,10 @@
 import React from 'react';
+import {
+  Link
+} from "react-router-dom";
 import './book-list-item.css'
 
-const BookListItem = ({book, onAddedToCart}) => {
+const BookListItem = ({book, onAddedToCart, onShowInfo}) => {
   const {title, author, image, price} = book;
   const style = {
     backgroundImage: `url(${image})`
@@ -20,10 +23,11 @@ const BookListItem = ({book, onAddedToCart}) => {
           className="btn btn-success"
           onClick={onAddedToCart}
           >Add to cart</button>
-          <button
+          <Link
+          to="./book-info"
           className="btn btn-info"
-          onClick={() => alert('not implemented yet')}
-          >Show more info</button>
+          onClick={() => onShowInfo()}
+          >Show more info</Link>
         </p>
       </div>
     </div>

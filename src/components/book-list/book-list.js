@@ -14,7 +14,8 @@ const BookList = ({books, onAddedToCart}) => { // only render
         books.map((book) => <BookListItem
                               key={book.id}
                               book={book}
-                              onAddedToCart={() => onAddedToCart(book.id)} />)
+                              onAddedToCart={() => onAddedToCart(book.id)}
+                              onShowInfo={() => console.log(book.id)} />)
       }
     </div>
   );
