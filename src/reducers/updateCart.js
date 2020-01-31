@@ -26,7 +26,7 @@ const updateCartItem = (book, item, quantity) => {
     newItem = {
       ...item,
       count: item.count + quantity,
-      total: item.total + quantity * book.price
+      total: parseFloat((item.total + quantity * book.price).toFixed(2))
     }
   } else {
     newItem = {
