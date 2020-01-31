@@ -7,6 +7,21 @@ import {
 } from '../../actions/index';
 import Spinner from '../spinner';
 
+const ratingStars = (rating) => {
+  let stars = new Array(5).fill(false);
+  parseInt(rating)
+  let i = 0;
+  while (i <= rating - 1) {
+    stars[i] = true;
+    i++;
+  }
+  let filledStars = stars.filter((element => element === true));
+  let emptyStars = stars.filter((element => element === false));
+  filledStars = filledStars.map(() => <i className="fa fa-star colored" />)
+  emptyStars = emptyStars.map(() => <i className="fa fa-star empty" />)
+  return [...filledStars, ...emptyStars]
+}
+
 export class BookInfo extends Component {
   state = {
     bookInfo: {},
@@ -51,6 +66,7 @@ export class BookInfo extends Component {
       price,
       image
     } = bookInfo
+    let a = ratingStars(rating)
     if (!infoId) {
       return (
         <div className="home-page-wrapper">
@@ -80,11 +96,11 @@ export class BookInfo extends Component {
             <h5>Language: {language}</h5>
             <h5>Pages: {pages}</h5>
             <h5>Year: {year}</h5>
-            <div className="rating">
-              <h5>Rating: {rating}*</h5>
-            </div>
             <h5>Description: {desc}</h5>
-            <h5>Price: {price}</h5>
+            <div className="rating">
+              <h3>Rating: {a}</h3>
+            </div>
+            <h2>Price: {price}</h2>
           </div>
         </div>
       </div>

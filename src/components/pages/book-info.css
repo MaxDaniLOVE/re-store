@@ -30,3 +30,12 @@
 .book-info-block_titles{
   max-width: 60vw;
 }
+.colored{
+  color: #56CC9D;
+}
+.empty{
+  color: #0000001a;
+}
+h2{
+  color: #185244;
+}

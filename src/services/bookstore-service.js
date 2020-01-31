@@ -15,7 +15,7 @@ export default class BookstoreService {
       title: book.title,
       author: book.subtitle,
       image: book.image,
-      price: parseInt((book.price).slice(1), 10),
+      price: parseFloat((book.price).slice(1)),
     }
   }
   getBooks = async () => {
