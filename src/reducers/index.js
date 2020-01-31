@@ -1,11 +1,11 @@
-import updateOrder from './updateCart';
+import {updateOrder, countTotal} from './updateCart';
 
 const initialState = {
   books: [],
   isLoading: true,
   error: null,
   cartItems: [],
-  orderTotal: 1120,
+  orderTotal: 0,
   infoId: null,
   bookInfo: {}
 }
@@ -43,6 +43,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         cartItems: updatedBooks,
+        orderTotal: countTotal(updatedBooks)
       }
     case 'WRITE_BOOK_ID':
       return {

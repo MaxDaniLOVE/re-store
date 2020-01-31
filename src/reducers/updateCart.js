@@ -38,6 +38,12 @@ const updateCartItem = (book, item, quantity) => {
   }
   return newItem;
 }
+const countTotal = (cartItems) => {
+  if (!cartItems.length) {
+    return 0
+  }
+  return cartItems.reduce((reducer, {total}) => reducer + total, 0);
+}
 
 const updateOrder = (state, bookId, quantity) => {
   const {books, cartItems} = state;
@@ -45,10 +51,12 @@ const updateOrder = (state, bookId, quantity) => {
   const itemIndex = cartItems.findIndex((addedBook) => addedBook.id === bookId)
   const item = cartItems[itemIndex]
   let newItem = updateCartItem(book, item, quantity)
+  const updatedCart = updateCartItems(cartItems, newItem, itemIndex);
   return {
     ...state,
-    cartItems: updateCartItems(cartItems, newItem, itemIndex),
+    cartItems: updatedCart,
+    orderTotal: countTotal(updatedCart)
   }
 }
 
-export default updateOrder;
+export {updateOrder, countTotal};
