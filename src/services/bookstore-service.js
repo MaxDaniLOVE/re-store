@@ -1,4 +1,5 @@
 export default class BookstoreService {
+  _bookApi = 'https://api.itbook.store/1.0/new'
   data = [
     {
       id: 1,
@@ -15,12 +16,26 @@ export default class BookstoreService {
       price: 11.89
     }
   ];
-  getBooks() {
-    return new Promise((res, rej) => {
-      setTimeout(() => {
-        res(this.data)
-        //rej(new Error()) testing errors
-      }, 421);
-    });
+  async getResource(url) {
+    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+    const res = await fetch(proxyUrl + url);
+    if (!res.ok) {
+      throw new Error('something wromg...')
+    }
+    const data = await res.json();
+    return data;
+  } 
+  _trandformBook = (book) => {
+    return {
+      id: book.isbn13,
+      title: book.title,
+      author: book.subtitle,
+      image: book.image,
+      price: parseInt((book.price).slice(1), 10),
+    }
+  }
+  getBooks = async () => {
+    const res = await this.getResource(this._bookApi);
+    return (res.books).map(this._trandformBook);
   }
 }
