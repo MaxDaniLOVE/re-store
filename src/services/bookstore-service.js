@@ -22,4 +22,8 @@ export default class BookstoreService {
     const res = await this.getResource(`${this._bookApi}new`);
     return (res.books).map(this._trandformBook);
   }
+  getBookInfo = async (id) => {
+    const res = await this.getResource(`${this._bookApi}books/${id}`);
+    return res;
+  }
 }

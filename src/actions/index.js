@@ -36,11 +36,28 @@ const allBookRemovedFromCart = (id) => {
     payload: id,
   }
 }
+
+const bookInfoId = (id) => {
+  return {
+    type: 'WRITE_BOOK_ID',
+    payload: id,
+  }
+}
+
+const bookInfo = (info) => {
+  return {
+    type: 'WRITE_BOOK_ID',
+    payload: info,
+  }
+}
+
 export {
   booksLoaded,
   booksRequested,
   booksError,
   bookAddedToCart,
   allBookRemovedFromCart,
-  bookRemovedFromCart
+  bookRemovedFromCart,
+  bookInfoId,
+  bookInfo
 }

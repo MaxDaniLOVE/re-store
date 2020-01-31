@@ -4,8 +4,10 @@ const initialState = {
   books: [],
   isLoading: true,
   error: null,
-  cartItems: [ ],
-  orderTotal: 1120
+  cartItems: [],
+  orderTotal: 1120,
+  infoId: null,
+  bookInfo: {}
 }
 
 const reducer = (state = initialState, action) => {
@@ -41,6 +43,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         cartItems: updatedBooks,
+      }
+    case 'WRITE_BOOK_ID':
+      return {
+        ...state,
+        infoId: action.payload
+      }
+    case 'FETCH_BOOK_INFO':
+      return {
+        ...state,
+        bookInfo: action.payload
       }
     default:
       return state;

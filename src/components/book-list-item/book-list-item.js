@@ -4,7 +4,7 @@ import {
 } from "react-router-dom";
 import './book-list-item.css'
 
-const BookListItem = ({book, onAddedToCart, onShowInfo}) => {
+const BookListItem = ({ book, onAddedToCart, onShowInfo }) => {
   const {title, author, image, price} = book;
   const style = {
     backgroundImage: `url(${image})`
@@ -26,7 +26,8 @@ const BookListItem = ({book, onAddedToCart, onShowInfo}) => {
           <Link
           to="./book-info"
           className="btn btn-info"
-          onClick={() => onShowInfo()}
+          onClick={() => onShowInfo()
+          }
           >Show more info</Link>
         </p>
       </div>

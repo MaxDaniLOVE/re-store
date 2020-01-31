@@ -1,3 +1,10 @@
 .book-info {
   margin-top: 6rem;
+  display: flex;
+  flex-direction: column;
+  width: 85vw;
+}
+.book-image{
+  width: 300px;
+  height: 350px;
 }

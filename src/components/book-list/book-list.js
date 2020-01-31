@@ -2,12 +2,18 @@ import React, { Component } from 'react';
 import BookListItem from '../book-list-item';
 import { connect } from 'react-redux';
 import withBookstoreService from '../hoc/with-bookstore-service';
-import {booksLoaded, booksRequested, booksError, bookAddedToCart} from '../../actions/index';
+import {
+  booksLoaded,
+  booksRequested,
+  booksError,
+  bookAddedToCart,
+  bookInfoId,
+} from '../../actions/index';
 import './book-list.css'
 import Spinner from '../spinner';
 import ErrorIndicator from '../error-indicator';
 
-const BookList = ({books, onAddedToCart}) => { // only render
+const BookList = ({books, onAddedToCart, onShowInfo, infoId}) => { // only render
   return (
     <div className="book-list-wrapper">
       {
@@ -15,7 +21,8 @@ const BookList = ({books, onAddedToCart}) => { // only render
                               key={book.id}
                               book={book}
                               onAddedToCart={() => onAddedToCart(book.id)}
-                              onShowInfo={() => console.log(book.id)} />)
+                              infoId={infoId}
+                              onShowInfo={() => onShowInfo(book.id)} />)
       }
     </div>
   );
@@ -27,7 +34,7 @@ export class BookListContainer extends Component { // only logic
   }
 
   render() {
-    const { books, isLoading, error, onAddedToCart } = this.props;
+    const { books, isLoading, error, onAddedToCart, onShowInfo, infoId } = this.props;
     if (isLoading) {
       return (
         <div className="book-list-wrapper">
@@ -43,7 +50,7 @@ export class BookListContainer extends Component { // only logic
       )
     }
 
-    return <BookList books={books} onAddedToCart={onAddedToCart}/>;
+    return <BookList books={books} onAddedToCart={onAddedToCart} onShowInfo={onShowInfo} infoId={infoId}/>
   }
 }
 
@@ -53,7 +60,8 @@ const mapStateToProps = (state) => { // set props of component
   return {
     books: state.books,
     isLoading: state.isLoading,
-    error: state.error
+    error: state.error,
+    infoId: state.infoId
   }
 }
 
@@ -72,6 +80,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       },
       onAddedToCart: (id) => {
         dispatch(bookAddedToCart(id))
+      },
+      onShowInfo: (id) => {
+        dispatch(bookInfoId(id))
       }
     }
   }
