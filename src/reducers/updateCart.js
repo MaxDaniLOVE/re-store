@@ -42,7 +42,7 @@ const countTotal = (cartItems) => {
   if (!cartItems.length) {
     return 0
   }
-  return cartItems.reduce((reducer, {total}) => reducer + total, 0);
+  return cartItems.reduce((reducer, {total}) => reducer + total, 0).toFixed(2);
 }
 
 const updateOrder = (state, bookId, quantity) => {

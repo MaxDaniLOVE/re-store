@@ -10,7 +10,7 @@ import ShopHeader from '../shop-header';
 const App = () => {
   return (
     <main>
-      <ShopHeader total={59.99} numItems={3}/>
+      <ShopHeader />
       <Switch>
         <Route path="/" component={HomePage} exact/>
         <Route path="/cart" component={CartPage} />
