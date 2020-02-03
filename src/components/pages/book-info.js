@@ -6,21 +6,7 @@ import {
   bookInfo,
 } from '../../actions/index';
 import Spinner from '../spinner';
-
-const ratingStars = (rating) => {
-  let stars = new Array(5).fill(false);
-  parseInt(rating)
-  let i = 0;
-  while (i <= rating - 1) {
-    stars[i] = true;
-    i++;
-  }
-  let filledStars = stars.filter((element => element === true));
-  let emptyStars = stars.filter((element => element === false));
-  filledStars = filledStars.map(() => <i className="fa fa-star colored" />)
-  emptyStars = emptyStars.map(() => <i className="fa fa-star empty" />)
-  return [...filledStars, ...emptyStars]
-}
+import ratingStars from '../../utils/ratingStars';
 
 export class BookInfo extends Component {
   state = {
