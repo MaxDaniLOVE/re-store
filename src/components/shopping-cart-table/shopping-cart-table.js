@@ -4,10 +4,17 @@ import { connect } from 'react-redux';
 import {bookAddedToCart,
   allBookRemovedFromCart,
   bookRemovedFromCart} from '../../actions/index';
+import {
+  Link
+} from "react-router-dom";
 
 const ShoppingCartTable = ({items, total, onIncrease, onDecrease, onDelete}) => {
   return (
     <div className="shopping-cart">
+      <div className="shopping-cart-header">
+        <h3>Your cart:</h3>
+        <Link className="btn btn-warning cart-btn return-btn" to="/">Return to shop</Link>
+      </div> 
       <table className="table shopping-cart-table">
         <thead className="shopping-cart-table-header">
           <tr>
@@ -53,7 +60,7 @@ const ShoppingCartTable = ({items, total, onIncrease, onDecrease, onDelete}) => 
             })
           }
         </tbody>
-      </table> 
+      </table>
       <h5 className="shopping-cart-total">Total: ${total}</h5>
     </div>
     

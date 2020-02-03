@@ -2,7 +2,6 @@
   color: #185244;
 }
 .shopping-cart-table{
-  margin-top: 6rem;
   width: 85vw;
   border: 1px solid #56CC9D;
 }
@@ -20,4 +19,16 @@
 }
 .td-btns{
   width: 175px;
+}
+.shopping-cart{
+  margin-top: 6rem;
+}
+.return-btn{
+  margin: 0;
+}
+.shopping-cart-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 3%;
 }
