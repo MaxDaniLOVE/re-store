@@ -1,4 +1,4 @@
-export default class BookstoreService {
+class BookstoreService {
   _bookApi = 'https://api.itbook.store/1.0/'
   _proxyUrl = 'https://cors-anywhere.herokuapp.com/';
   async getResource(url) {
@@ -27,3 +27,5 @@ export default class BookstoreService {
     return res;
   }
 }
+
+export default BookstoreService;
